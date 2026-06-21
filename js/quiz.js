@@ -178,15 +178,25 @@ function showEffTable(eff) {
         if (groups[v]) groups[v].push(t);
         else groups[1].push(t);
     }
-    const labels = { 4: '×4 (×4)', 2: '×2', 0.5: '×½', 0.25: '×¼', 0: '×0 (miễn nhiễm)', 1: '×1 (bình thường)' };
     const colors = { 4: '#e25c5c', 2: '#f5a623', 0.5: '#4caf88', 0.25: '#4c9baf', 0: '#7c6df8', 1: 'var(--muted)' };
+    
+    const pokeTypesStr = state.current.types.map(t => renderTypeBadge(t)).join(' ');
+    
     let html = '';
-    for (const [val, types] of Object.entries(groups)) {
-        if (types.length === 0) continue;
-        html += `<div class="eff-row">
-<span class="eff-mult" style="color:${colors[val]}">${labels[val]}</span>
-<span class="eff-types">${types.map(t => renderTypeBadge(t)).join('')}</span>
-</div>`;
+    const order = [4, 2, 1, 0.5, 0.25, 0];
+    for (const val of order) {
+        const types = groups[val];
+        if (!types || types.length === 0) continue;
+        
+        html += `<div style="margin-bottom:0.8rem;">
+            <div style="color:${colors[val]}; font-weight:bold; margin-bottom:0.3rem; font-size:0.9rem;">Sát thương ×${val}:</div>
+            <div style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center; background:var(--surface); padding:0.8rem; border-radius:8px; border-left:3px solid ${colors[val]};">
+                <span style="display:flex; gap:0.3rem; flex-wrap:wrap;">${types.map(t => renderTypeBadge(t)).join('')}</span>
+                <span style="color:var(--muted); font-size:1.1rem; font-weight:bold; margin: 0 0.5rem;">➔</span>
+                <span style="display:flex; gap:0.3rem;">${pokeTypesStr}</span>
+                <strong style="margin-left:auto; color:${colors[val]}; font-size:1.1rem;">×${val}</strong>
+            </div>
+        </div>`;
     }
     const el = document.getElementById('eff-table');
     el.innerHTML = html;
