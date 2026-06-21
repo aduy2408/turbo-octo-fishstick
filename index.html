@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Hub</title>
+    <link rel="stylesheet" href="css/style.css?v=2">
+</head>
+<body>
+    <header>
+        <div class="logo">Pokémon <span>Hub</span></div>
+        <div class="tabs" style="display:flex; gap:1rem; margin-left:2rem;">
+            <button class="tab-btn active" data-tab="quiz">Type Quiz</button>
+            <button class="tab-btn" data-tab="versus">Versus Mode</button>
+        </div>
+        <div class="score-bar" id="score-bar">
+            <div class="score-item"><div class="val" id="s-correct" style="color:var(--correct)">0</div><div class="lbl">Đúng</div></div>
+            <div class="score-item"><div class="val" id="s-wrong" style="color:var(--wrong)">0</div><div class="lbl">Sai</div></div>
+            <div class="score-item"><div class="val" id="s-streak" style="color:#f5a623">0</div><div class="lbl">Streak</div></div>
+            <div class="score-item"><div class="val" id="s-acc">—</div><div class="lbl">Accuracy</div></div>
+        </div>
+    </header>
+
+    <div id="tab-quiz" class="tab-content" style="display:block;">
+        <main>
+            <div style="margin-bottom:1rem; display:flex; gap:0.7rem; align-items:center; flex-wrap:wrap;">
+                <div class="modes" id="modes">
+                    <button class="mode-btn active" data-mode="weakness">Weakness (×2)</button>
+                    <button class="mode-btn" data-mode="resistance">Resistance (×0.5)</button>
+                    <button class="mode-btn" data-mode="immunity">Immunity (×0)</button>
+                    <button class="mode-btn" data-mode="all">All Effectiveness</button>
+                </div>
+                <button class="btn btn-ghost" onclick="showHint()" id="hint-btn" style="margin-left:auto">💡 Gợi ý</button>
+            </div>
+
+            <div class="mode-desc" id="mode-desc"></div>
+
+            <div class="progress-wrap">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+                </div>
+                <div class="progress-text" id="progress-text">0 / 0</div>
+            </div>
+
+            <div class="quiz-card" id="quiz-card">
+                <div class="pokemon-header">
+                    <img class="pokemon-sprite" id="poke-sprite" src="" alt="Pokemon sprite">
+                    <div class="pokemon-info">
+                        <div class="pokemon-num" id="poke-num">#001</div>
+                        <div class="pokemon-name" id="poke-name">Bulbasaur</div>
+                        <div class="type-badges" id="poke-types"></div>
+                    </div>
+                </div>
+
+                <div class="question-text" id="question-text"></div>
+
+                <div class="legend">
+                    <span><span class="dot" style="background:var(--correct)"></span>Đúng</span>
+                    <span><span class="dot" style="background:var(--wrong)"></span>Sai (chọn nhầm)</span>
+                    <span><span class="dot" style="background:#f5a623"></span>Bỏ sót</span>
+                </div>
+
+                <div class="type-grid" id="type-grid"></div>
+
+                <div class="eff-table" id="eff-table"></div>
+
+                <div class="btn-row" style="margin-top:1rem">
+                    <button class="btn btn-primary" id="submit-btn" onclick="submitAnswer()">Chấm điểm</button>
+                    <button class="btn btn-ghost" onclick="nextPokemon()">Bỏ qua →</button>
+                    <button class="btn btn-ghost" id="next-btn" onclick="nextPokemon()"
+                        style="display:none; background:var(--accent); color:#fff">Tiếp theo →</button>
+                </div>
+
+                <div class="feedback" id="feedback"></div>
+            </div>
+        </main>
+    </div>
+
+    <div id="tab-versus" class="tab-content" style="display:none; width: 100%; max-width: 900px; padding: 1.5rem 1rem 4rem; margin: 0 auto;">
+        <!-- Versus mode will be rendered here -->
+    </div>
+
+    <script src="js/data.js?v=2"></script>
+    <script src="js/quiz.js?v=2"></script>
+    <script src="js/versus.js?v=2"></script>
+    <script src="js/app.js?v=2"></script>
+</body>
+</html>

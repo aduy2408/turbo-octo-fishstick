@@ -1,0 +1,4 @@
+const TYPE_COLORS = { Normal: { bg: '#A8A878', text: '#3d3a2a' }, Fire: { bg: '#F08030', text: '#4a2200' }, Water: { bg: '#6890F0', text: '#0d1f5c' }, Electric: { bg: '#F8D030', text: '#4a3a00' }, Grass: { bg: '#78C850', text: '#1a3d00' }, Ice: { bg: '#98D8D8', text: '#1a4040' }, Fighting: { bg: '#C03028', text: '#fff' }, Poison: { bg: '#A040A0', text: '#fff' }, Ground: { bg: '#E0C068', text: '#3d2d00' }, Flying: { bg: '#A890F0', text: '#1a0a5c' }, Psychic: { bg: '#F85888', text: '#4a001a' }, Bug: { bg: '#A8B820', text: '#2d3300' }, Rock: { bg: '#B8A038', text: '#2d2500' }, Ghost: { bg: '#705898', text: '#fff' }, Dragon: { bg: '#7038F8', text: '#fff' }, Dark: { bg: '#705848', text: '#fff' }, Steel: { bg: '#B8B8D0', text: '#1a1a2d' }, Fairy: { bg: '#EE99AC', text: '#4a0020' } };
+const data = { types: [{type: {name: 'ghost'}}] };
+const types = data.types.map(t => t.type.name.charAt(0).toUpperCase() + t.type.name.slice(1));
+console.log(types);
